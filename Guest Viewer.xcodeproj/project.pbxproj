@@ -15,6 +15,8 @@
 		D0D48404267C323F009A4086 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0D48402267C323F009A4086 /* LaunchScreen.storyboard */; };
 		D0D4840D267C3491009A4086 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D0D4840C267C3491009A4086 /* FirebaseFirestore */; };
 		D0D4840F267C3491009A4086 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = D0D4840E267C3491009A4086 /* FirebaseFirestoreSwift-Beta */; };
+		D0E547DB267EEAA400A399C5 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E547DA267EEAA400A399C5 /* FirebaseManager.swift */; };
+		D0E547DE267EF0FE00A399C5 /* ListCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E547DD267EF0FE00A399C5 /* ListCollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		D0D48400267C323F009A4086 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0D48403267C323F009A4086 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D0D48405267C323F009A4086 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0E547DA267EEAA400A399C5 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		D0E547DD267EF0FE00A399C5 /* ListCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +72,8 @@
 		D0D483F6267C323C009A4086 /* Guest Viewer */ = {
 			isa = PBXGroup;
 			children = (
+				D0E547DC267EF0D700A399C5 /* Views */,
+				D0E547D9267EEA7D00A399C5 /* Firebase Management */,
 				D0218FA2267D3D9200F164EF /* Models */,
 				D0D483F7267C323C009A4086 /* AppDelegate.swift */,
 				D0D483F9267C323C009A4086 /* SceneDelegate.swift */,
@@ -77,6 +83,22 @@
 				D0218FA0267D3B3000F164EF /* GoogleService-Info.plist */,
 			);
 			path = "Guest Viewer";
+			sourceTree = "<group>";
+		};
+		D0E547D9267EEA7D00A399C5 /* Firebase Management */ = {
+			isa = PBXGroup;
+			children = (
+				D0E547DA267EEAA400A399C5 /* FirebaseManager.swift */,
+			);
+			path = "Firebase Management";
+			sourceTree = "<group>";
+		};
+		D0E547DC267EF0D700A399C5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D0E547DD267EF0FE00A399C5 /* ListCollectionViewController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,7 +178,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0E547DB267EEAA400A399C5 /* FirebaseManager.swift in Sources */,
 				D0D483F8267C323C009A4086 /* AppDelegate.swift in Sources */,
+				D0E547DE267EF0FE00A399C5 /* ListCollectionViewController.swift in Sources */,
 				D0D483FA267C323C009A4086 /* SceneDelegate.swift in Sources */,
 				D0218FA4267D3D9C00F164EF /* Guest.swift in Sources */,
 			);
