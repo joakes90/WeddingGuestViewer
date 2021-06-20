@@ -10,7 +10,7 @@ import Firebase
 
 typealias Guests = [Guest]
 
-struct Guest {
+struct Guest: Hashable {
     let attending: Bool
     let email: String
     let message: String
