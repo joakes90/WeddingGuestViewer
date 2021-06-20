@@ -15,9 +15,8 @@
 		D0D48404267C323F009A4086 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0D48402267C323F009A4086 /* LaunchScreen.storyboard */; };
 		D0D4840D267C3491009A4086 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D0D4840C267C3491009A4086 /* FirebaseFirestore */; };
 		D0D4840F267C3491009A4086 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = D0D4840E267C3491009A4086 /* FirebaseFirestoreSwift-Beta */; };
-		D0E1110E267FBDAC009F55E7 /* ListCollectionViewController+SectionComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E1110D267FBDAC009F55E7 /* ListCollectionViewController+SectionComposer.swift */; };
 		D0E547DB267EEAA400A399C5 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E547DA267EEAA400A399C5 /* FirebaseManager.swift */; };
-		D0E547DE267EF0FE00A399C5 /* ListCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E547DD267EF0FE00A399C5 /* ListCollectionViewController.swift */; };
+		D0E547DE267EF0FE00A399C5 /* GuestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E547DD267EF0FE00A399C5 /* GuestTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,9 +28,8 @@
 		D0D48400267C323F009A4086 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0D48403267C323F009A4086 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D0D48405267C323F009A4086 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D0E1110D267FBDAC009F55E7 /* ListCollectionViewController+SectionComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListCollectionViewController+SectionComposer.swift"; sourceTree = "<group>"; };
 		D0E547DA267EEAA400A399C5 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
-		D0E547DD267EF0FE00A399C5 /* ListCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewController.swift; sourceTree = "<group>"; };
+		D0E547DD267EF0FE00A399C5 /* GuestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,8 +96,7 @@
 		D0E547DC267EF0D700A399C5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D0E547DD267EF0FE00A399C5 /* ListCollectionViewController.swift */,
-				D0E1110D267FBDAC009F55E7 /* ListCollectionViewController+SectionComposer.swift */,
+				D0E547DD267EF0FE00A399C5 /* GuestTableViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -183,9 +180,8 @@
 			files = (
 				D0E547DB267EEAA400A399C5 /* FirebaseManager.swift in Sources */,
 				D0D483F8267C323C009A4086 /* AppDelegate.swift in Sources */,
-				D0E547DE267EF0FE00A399C5 /* ListCollectionViewController.swift in Sources */,
+				D0E547DE267EF0FE00A399C5 /* GuestTableViewController.swift in Sources */,
 				D0D483FA267C323C009A4086 /* SceneDelegate.swift in Sources */,
-				D0E1110E267FBDAC009F55E7 /* ListCollectionViewController+SectionComposer.swift in Sources */,
 				D0218FA4267D3D9C00F164EF /* Guest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -335,7 +331,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "joakes.Guest-Viewer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -354,7 +350,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "joakes.Guest-Viewer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

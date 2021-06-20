@@ -34,3 +34,10 @@ extension Guest: Codable {
         case partySize
     }
 }
+
+struct MastheadItem: Hashable {
+    let numberOfReplies: Int
+    let numberOfConfirmedYes: Int
+    let numberOfConfirmedNo: Int
+    let totalGuests: Int
+}
