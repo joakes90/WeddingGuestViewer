@@ -35,9 +35,4 @@ extension Guest: Codable {
     }
 }
 
-struct MastheadItem: Hashable {
-    let numberOfReplies: Int
-    let numberOfConfirmedYes: Int
-    let numberOfConfirmedNo: Int
-    let totalGuests: Int
-}
+typealias MastheadItem = MastheadView.Model
