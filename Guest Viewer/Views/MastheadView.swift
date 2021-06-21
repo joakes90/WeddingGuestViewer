@@ -59,10 +59,13 @@ class MastheadView: UIView {
         noLabel.textAlignment = .right
         repliesStack.addArrangedSubview(noLabel)
         
+        // Handling stakcview being janky
         let replySpacer = UIView(frame: .zero)
         repliesStack.addArrangedSubview(replySpacer)
+        let repliesSpacerConstraint = replySpacer.widthAnchor.constraint(equalToConstant: 24.0)
+        repliesSpacerConstraint.priority = .defaultLow
         NSLayoutConstraint.activate([
-            replySpacer.widthAnchor.constraint(equalToConstant: 24.0)
+            repliesSpacerConstraint
         ])
         containerStack.addArrangedSubview(repliesStack)
 
@@ -77,10 +80,13 @@ class MastheadView: UIView {
         partySizeLabel.font = UIFont.preferredFont(forTextStyle: .callout)
         partySizeLabel.textAlignment = .right
         containerStack.addArrangedSubview(totalStack)
+        // Handling stakcview being janky
         let totalSpacer = UIView(frame: .zero)
         totalStack.addArrangedSubview(totalSpacer)
+        let totalSpacerConstraint = totalSpacer.widthAnchor.constraint(equalToConstant: 24.0)
+        totalSpacerConstraint.priority = .defaultLow
         NSLayoutConstraint.activate([
-            totalSpacer.widthAnchor.constraint(equalToConstant: 24.0)
+            totalSpacerConstraint
         ])
         
         addSubview(containerStack)

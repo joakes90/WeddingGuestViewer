@@ -10,6 +10,8 @@
 		D0218FA1267D3B3000F164EF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0218FA0267D3B3000F164EF /* GoogleService-Info.plist */; };
 		D0218FA4267D3D9C00F164EF /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0218FA3267D3D9C00F164EF /* Guest.swift */; };
 		D0481618267FDB3300AECCA1 /* MastheadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0481617267FDB3300AECCA1 /* MastheadView.swift */; };
+		D048161A26810D9800AECCA1 /* GuestDetailViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048161926810D9800AECCA1 /* GuestDetailViewViewController.swift */; };
+		D048161F2681250500AECCA1 /* UILabel+Copyable in Frameworks */ = {isa = PBXBuildFile; productRef = D048161E2681250500AECCA1 /* UILabel+Copyable */; };
 		D0D483F8267C323C009A4086 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D483F7267C323C009A4086 /* AppDelegate.swift */; };
 		D0D483FA267C323C009A4086 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D483F9267C323C009A4086 /* SceneDelegate.swift */; };
 		D0D48401267C323F009A4086 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0D48400267C323F009A4086 /* Assets.xcassets */; };
@@ -24,6 +26,7 @@
 		D0218FA0267D3B3000F164EF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D0218FA3267D3D9C00F164EF /* Guest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
 		D0481617267FDB3300AECCA1 /* MastheadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastheadView.swift; sourceTree = "<group>"; };
+		D048161926810D9800AECCA1 /* GuestDetailViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestDetailViewViewController.swift; sourceTree = "<group>"; };
 		D0D483F4267C323C009A4086 /* Guest Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Guest Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0D483F7267C323C009A4086 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0D483F9267C323C009A4086 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +44,7 @@
 			files = (
 				D0D4840D267C3491009A4086 /* FirebaseFirestore in Frameworks */,
 				D0D4840F267C3491009A4086 /* FirebaseFirestoreSwift-Beta in Frameworks */,
+				D048161F2681250500AECCA1 /* UILabel+Copyable in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +104,7 @@
 			children = (
 				D0E547DD267EF0FE00A399C5 /* GuestTableViewController.swift */,
 				D0481617267FDB3300AECCA1 /* MastheadView.swift */,
+				D048161926810D9800AECCA1 /* GuestDetailViewViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -123,6 +128,7 @@
 			packageProductDependencies = (
 				D0D4840C267C3491009A4086 /* FirebaseFirestore */,
 				D0D4840E267C3491009A4086 /* FirebaseFirestoreSwift-Beta */,
+				D048161E2681250500AECCA1 /* UILabel+Copyable */,
 			);
 			productName = "Guest Viewer";
 			productReference = D0D483F4267C323C009A4086 /* Guest Viewer.app */;
@@ -153,6 +159,7 @@
 			mainGroup = D0D483EB267C323C009A4086;
 			packageReferences = (
 				D0D4840B267C3491009A4086 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				D048161D2681250500AECCA1 /* XCRemoteSwiftPackageReference "UILabel-Copyable" */,
 			);
 			productRefGroup = D0D483F5267C323C009A4086 /* Products */;
 			projectDirPath = "";
@@ -184,6 +191,7 @@
 				D0E547DB267EEAA400A399C5 /* FirebaseManager.swift in Sources */,
 				D0481618267FDB3300AECCA1 /* MastheadView.swift in Sources */,
 				D0D483F8267C323C009A4086 /* AppDelegate.swift in Sources */,
+				D048161A26810D9800AECCA1 /* GuestDetailViewViewController.swift in Sources */,
 				D0E547DE267EF0FE00A399C5 /* GuestTableViewController.swift in Sources */,
 				D0D483FA267C323C009A4086 /* SceneDelegate.swift in Sources */,
 				D0218FA4267D3D9C00F164EF /* Guest.swift in Sources */,
@@ -382,6 +390,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D048161D2681250500AECCA1 /* XCRemoteSwiftPackageReference "UILabel-Copyable" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alexandreos/UILabel-Copyable";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.1;
+			};
+		};
 		D0D4840B267C3491009A4086 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -393,6 +409,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D048161E2681250500AECCA1 /* UILabel+Copyable */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D048161D2681250500AECCA1 /* XCRemoteSwiftPackageReference "UILabel-Copyable" */;
+			productName = "UILabel+Copyable";
+		};
 		D0D4840C267C3491009A4086 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D0D4840B267C3491009A4086 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

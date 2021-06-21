@@ -20,11 +20,17 @@ class GuestTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateGuests()
+    }
+
+    override func loadView() {
+        super.loadView()
+        view.backgroundColor = .systemGroupedBackground
         title = "Guests"
         navigationController?.navigationBar.prefersLargeTitles = true
         
         tableView = UITableView(frame: view.bounds, style: .insetGrouped)
         tableView.delegate = self
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
 
         // Register Cells
@@ -45,6 +51,13 @@ class GuestTableViewController: UIViewController {
                 return cell
             }
         })
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
     }
 
     private func updateGuests() {
@@ -94,6 +107,20 @@ extension GuestTableViewController: UITableViewDelegate {
             return UITableView.automaticDimension
         case .none:
             return 0.0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        switch Section(rawValue: indexPath.section) {
+        case .guests:
+            if case .guest(let guest) = dataSource.itemIdentifier(for: indexPath) {
+                let detailView = GuestDetailViewViewController()
+                detailView.config(with: guest)
+                navigationController?.pushViewController(detailView, animated: true)
+            }
+        default:
+            return
         }
     }
 }
