@@ -27,7 +27,8 @@ class GuestTableViewController: UIViewController {
         view.backgroundColor = .systemGroupedBackground
         title = "Guests"
         navigationController?.navigationBar.prefersLargeTitles = true
-        
+        addBarButtons()
+
         tableView = UITableView(frame: view.bounds, style: .insetGrouped)
         tableView.delegate = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -82,6 +83,52 @@ class GuestTableViewController: UIViewController {
         
         snapshot.appendItems(guests.map({ Item.guest($0) }), toSection: .guests)
         dataSource.apply(snapshot, animatingDifferences: true, completion: nil)
+    }
+    
+    private func addBarButtons() {
+        let size = UIAction(title: "Sort by party size",
+                            image: UIImage(systemName: "person.3")) { [weak self] _ in
+            guard let items = self?.dataSource.snapshot().itemIdentifiers(inSection: .guests) else { return }
+            let guests: [Guest] = items.compactMap({ item in
+                switch item {
+                case .guest(let guest): return guest
+                case _: return nil
+                }
+            })
+            self?.buildSnap(for: guests.sorted(by: { $0.partySize > $1.partySize }))
+        }
+        
+        let alphabetical = UIAction(title: "Sort by name",
+                            image: UIImage(systemName: "person.circle")) { [weak self] _ in
+            guard let items = self?.dataSource.snapshot().itemIdentifiers(inSection: .guests) else { return }
+            let guests: [Guest] = items.compactMap({ item in
+                switch item {
+                case .guest(let guest): return guest
+                case _: return nil
+                }
+            })
+            self?.buildSnap(for: guests.sorted(by: { $0.name < $1.name }))
+        }
+        let dateAdded = UIAction(title: "Sort by date added",
+                                 image: UIImage(systemName: "calendar.circle")) { [weak self] _ in
+            guard let items = self?.dataSource.snapshot().itemIdentifiers(inSection: .guests) else { return }
+            let guests: [Guest] = items.compactMap({ item in
+                switch item {
+                case .guest(let guest): return guest
+                case _: return nil
+                }
+            })
+
+            self?.buildSnap(for: guests.sorted(by: { $0.submittedDate ?? Date.distantPast < $1.submittedDate ?? Date.distantFuture}))
+        }
+        
+        let menu = UIMenu(title: "Sort", options: .displayInline, children: [size, alphabetical, dateAdded])
+        let sortButton = UIBarButtonItem(image: UIImage(systemName: "arrow.up.arrow.down.circle"), menu: menu)
+        navigationItem.rightBarButtonItem = sortButton
+    }
+    
+    @objc func setSort() {
+        print("set sort")
     }
 }
 

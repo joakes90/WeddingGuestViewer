@@ -63,7 +63,7 @@ class MastheadView: UIView {
         let replySpacer = UIView(frame: .zero)
         repliesStack.addArrangedSubview(replySpacer)
         let repliesSpacerConstraint = replySpacer.widthAnchor.constraint(equalToConstant: 24.0)
-        repliesSpacerConstraint.priority = .defaultLow
+        repliesSpacerConstraint.priority = .defaultHigh
         NSLayoutConstraint.activate([
             repliesSpacerConstraint
         ])
@@ -84,7 +84,7 @@ class MastheadView: UIView {
         let totalSpacer = UIView(frame: .zero)
         totalStack.addArrangedSubview(totalSpacer)
         let totalSpacerConstraint = totalSpacer.widthAnchor.constraint(equalToConstant: 24.0)
-        totalSpacerConstraint.priority = .defaultLow
+        totalSpacerConstraint.priority = .defaultHigh
         NSLayoutConstraint.activate([
             totalSpacerConstraint
         ])
