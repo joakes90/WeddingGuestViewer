@@ -45,6 +45,22 @@ class MastheadView: UIView {
         containerStack.addArrangedSubview(titleLabel)
 
         // Set up yes/no row
+        buildRepliesRow()
+
+        // Set up total count row
+        buildTotalsRow()
+
+        addSubview(containerStack)
+
+        NSLayoutConstraint.activate([
+            containerStack.topAnchor.constraint(equalTo: topAnchor, constant: 8.0),
+            containerStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 8.0),
+            containerStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8.0),
+            containerStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8.0)
+        ])
+    }
+
+    fileprivate func buildRepliesRow() {
         let repliesStack = UIStackView()
         repliesStack.axis = .horizontal
         repliesStack.alignment = .fill
@@ -67,8 +83,9 @@ class MastheadView: UIView {
             repliesSpacerConstraint
         ])
         containerStack.addArrangedSubview(repliesStack)
+    }
 
-        // Set up total count row
+    fileprivate func buildTotalsRow() {
         let totalStack = UIStackView(arrangedSubviews: [repliesCountLabel, partySizeLabel])
         totalStack.axis = .horizontal
         totalStack.alignment = .fill
@@ -79,24 +96,15 @@ class MastheadView: UIView {
         partySizeLabel.font = UIFont.preferredFont(forTextStyle: .callout)
         partySizeLabel.textAlignment = .right
         containerStack.addArrangedSubview(totalStack)
+
         // Handling stakcview being janky
         let totalSpacer = UIView(frame: .zero)
         totalStack.addArrangedSubview(totalSpacer)
         let totalSpacerConstraint = totalSpacer.widthAnchor.constraint(equalToConstant: 24.0)
         totalSpacerConstraint.priority = .defaultHigh
-        NSLayoutConstraint.activate([
-            totalSpacerConstraint
-        ])
-
-        addSubview(containerStack)
-
-        NSLayoutConstraint.activate([
-            containerStack.topAnchor.constraint(equalTo: topAnchor, constant: 8.0),
-            containerStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 8.0),
-            containerStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8.0),
-            containerStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8.0)
-        ])
+        NSLayoutConstraint.activate([ totalSpacerConstraint ])
     }
+
     func configure(with model: Model) {
         titleLabel.text = "By the numbers"
         repliesCountLabel.text = "Replies: \(model.numberOfReplies)"

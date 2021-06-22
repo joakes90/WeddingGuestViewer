@@ -25,6 +25,7 @@ class GuestDetailViewViewController: UIViewController {
 
     override func loadView() {
         super.loadView()
+
         view.backgroundColor = .white
         stackView.axis = .vertical
         stackView.distribution = .fill
@@ -32,10 +33,38 @@ class GuestDetailViewViewController: UIViewController {
         stackView.spacing = 0.0
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
+        buildNameRow()
+
+        buildEmailRow()
+
+        attendingLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        stackView.addArrangedSubview(attendingLabel)
+
+        partySizeLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        stackView.addArrangedSubview(partySizeLabel)
+
+        buildMessageRow()
+
+        let spacer = UIView()
+        stackView.addArrangedSubview(spacer)
+
+        view.addSubview(stackView)
+
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16.0),
+            stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16.0),
+            stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 16.0),
+            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 16.0)
+        ])
+    }
+
+    fileprivate func buildNameRow() {
         nameLabel.font = UIFont.preferredFont(forTextStyle: .headline)
         nameLabel.isCopyingEnabled = true
         stackView.addArrangedSubview(nameLabel)
+    }
 
+    fileprivate func buildEmailRow() {
         emailRow.axis = .horizontal
         emailRow.alignment = .firstBaseline
         emailRow.distribution = .equalSpacing
@@ -50,13 +79,9 @@ class GuestDetailViewViewController: UIViewController {
         emailRow.addArrangedSubview(emailLabel)
 
         stackView.addArrangedSubview(emailRow)
+    }
 
-        attendingLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        stackView.addArrangedSubview(attendingLabel)
-
-        partySizeLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        stackView.addArrangedSubview(partySizeLabel)
-
+    fileprivate func buildMessageRow() {
         messageRow.axis = .horizontal
         messageRow.alignment = .firstBaseline
         messageRow.distribution = .equalSpacing
@@ -81,18 +106,6 @@ class GuestDetailViewViewController: UIViewController {
         let messageSpacer = UIView()
         messageRow.addArrangedSubview(messageSpacer)
         stackView.addArrangedSubview(messageRow)
-
-        let spacer = UIView()
-        stackView.addArrangedSubview(spacer)
-
-        view.addSubview(stackView)
-
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16.0),
-            stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16.0),
-            stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 16.0),
-            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 16.0)
-        ])
     }
 
     func config(with guest: Guest) {
