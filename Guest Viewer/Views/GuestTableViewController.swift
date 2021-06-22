@@ -12,6 +12,7 @@ class GuestTableViewController: UIViewController {
     // Subviews
     private var tableView: UITableView!
     private var dataSource: UITableViewDiffableDataSource<Section, Item>!
+    private var activityIndicator: UIActivityIndicatorView!
 
     // Supporting objects
     private let firebaseManager = FireBaseManager()
@@ -28,11 +29,20 @@ class GuestTableViewController: UIViewController {
         title = "Guests"
         navigationController?.navigationBar.prefersLargeTitles = true
         addBarButtons()
-
+        
         tableView = UITableView(frame: view.bounds, style: .insetGrouped)
         tableView.delegate = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
+
+        activityIndicator = UIActivityIndicatorView(style: .large)
+        tableView.backgroundView = activityIndicator
+        activityIndicator.startAnimating()
+        
+        // Add refresh control
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(updateGuests), for: .valueChanged)
+        tableView.refreshControl = refreshControl
 
         // Register Cells
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "guest")
@@ -61,9 +71,11 @@ class GuestTableViewController: UIViewController {
         ])
     }
 
-    private func updateGuests() {
+    @objc private func updateGuests() {
         guestFuture = firebaseManager.getGuests()
             .sink() { [weak self] guests in
+                self?.tableView.refreshControl?.endRefreshing()
+                self?.activityIndicator.stopAnimating()
                 self?.buildSnap(for: guests)
             }
             
