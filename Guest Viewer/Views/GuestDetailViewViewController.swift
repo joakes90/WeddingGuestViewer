@@ -18,7 +18,7 @@ class GuestDetailViewViewController: UIViewController {
     private let messageLabel = UILabel()
     private let emailRow = UIStackView()
     private let messageRow = UIStackView()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -31,62 +31,62 @@ class GuestDetailViewViewController: UIViewController {
         stackView.alignment = .leading
         stackView.spacing = 0.0
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         nameLabel.font = UIFont.preferredFont(forTextStyle: .headline)
         nameLabel.isCopyingEnabled = true
         stackView.addArrangedSubview(nameLabel)
-        
+
         emailRow.axis = .horizontal
         emailRow.alignment = .firstBaseline
         emailRow.distribution = .equalSpacing
         emailRow.spacing = 10.0
-        
+
         let emailTitleLabel = UILabel()
         emailTitleLabel.text = "Email: "
         emailTitleLabel.font = UIFont.preferredFont(forTextStyle: .body)
         emailRow.addArrangedSubview(emailTitleLabel)
-        
+
         emailLabel.font = UIFont.preferredFont(forTextStyle: .headline)
         emailRow.addArrangedSubview(emailLabel)
-        
+
         stackView.addArrangedSubview(emailRow)
-        
+
         attendingLabel.font = UIFont.preferredFont(forTextStyle: .body)
         stackView.addArrangedSubview(attendingLabel)
-        
+
         partySizeLabel.font = UIFont.preferredFont(forTextStyle: .body)
         stackView.addArrangedSubview(partySizeLabel)
-        
+
         messageRow.axis = .horizontal
         messageRow.alignment = .firstBaseline
         messageRow.distribution = .equalSpacing
         messageRow.spacing = 10.0
-        
+
         let messageTitleLabel = UILabel()
         messageTitleLabel.text = "Message: "
         messageTitleLabel.font = UIFont.preferredFont(forTextStyle: .body)
         messageRow.addArrangedSubview(messageTitleLabel)
-        
+
         messageLabel.font = UIFont.preferredFont(forTextStyle: .headline)
         messageLabel.lineBreakMode = .byWordWrapping
         messageLabel.numberOfLines = 0
         messageLabel.isCopyingEnabled = true
-        
+
         let messageWrapper = UIStackView(arrangedSubviews: [messageLabel])
         messageWrapper.axis = .horizontal
         messageWrapper.alignment = .firstBaseline
         messageWrapper.distribution = .fill
-        
+
         messageRow.addArrangedSubview(messageWrapper)
         let messageSpacer = UIView()
         messageRow.addArrangedSubview(messageSpacer)
         stackView.addArrangedSubview(messageRow)
-        
+
         let spacer = UIView()
         stackView.addArrangedSubview(spacer)
-        
+
         view.addSubview(stackView)
-        
+
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16.0),
             stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16.0),

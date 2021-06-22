@@ -21,13 +21,13 @@ class MastheadView: UIView {
     private var yesLabel = UILabel()
     private var noLabel = UILabel()
     private var partySizeLabel = UILabel()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         configureStackView()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -38,27 +38,26 @@ class MastheadView: UIView {
         containerStack.alignment = .fill
         containerStack.distribution = .fillProportionally
         containerStack.translatesAutoresizingMaskIntoConstraints = false
-        
+
         // Set up title label and add to stack
         titleLabel.font = UIFont.preferredFont(forTextStyle: .headline)
         titleLabel.textAlignment = .center
         containerStack.addArrangedSubview(titleLabel)
-        
+
         // Set up yes/no row
         let repliesStack = UIStackView()
         repliesStack.axis = .horizontal
         repliesStack.alignment = .fill
         repliesStack.distribution = .fill
-        
-        
+
         yesLabel.font = UIFont.preferredFont(forTextStyle: .callout)
         yesLabel.textAlignment = .left
         repliesStack.addArrangedSubview(yesLabel)
-        
+
         noLabel.font = UIFont.preferredFont(forTextStyle: .callout)
         noLabel.textAlignment = .right
         repliesStack.addArrangedSubview(noLabel)
-        
+
         // Handling stakcview being janky
         let replySpacer = UIView(frame: .zero)
         repliesStack.addArrangedSubview(replySpacer)
@@ -74,7 +73,7 @@ class MastheadView: UIView {
         totalStack.axis = .horizontal
         totalStack.alignment = .fill
         totalStack.distribution = .fill
-                
+
         repliesCountLabel.font = UIFont.preferredFont(forTextStyle: .callout)
         repliesCountLabel.textAlignment = .left
         partySizeLabel.font = UIFont.preferredFont(forTextStyle: .callout)
@@ -88,9 +87,9 @@ class MastheadView: UIView {
         NSLayoutConstraint.activate([
             totalSpacerConstraint
         ])
-        
+
         addSubview(containerStack)
-        
+
         NSLayoutConstraint.activate([
             containerStack.topAnchor.constraint(equalTo: topAnchor, constant: 8.0),
             containerStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 8.0),
@@ -108,18 +107,18 @@ class MastheadView: UIView {
 }
 
 class MastheadCell: UITableViewCell {
-    
+
     var mastheadView: MastheadView!
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         commonInit()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func commonInit() {
         mastheadView = MastheadView(frame: frame)
         mastheadView.translatesAutoresizingMaskIntoConstraints = false
@@ -131,7 +130,7 @@ class MastheadCell: UITableViewCell {
             mastheadView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
     }
-    
+
     func configure(with model: MastheadView.Model) {
         mastheadView.configure(with: model)
     }

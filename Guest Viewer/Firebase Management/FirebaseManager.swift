@@ -13,9 +13,9 @@ class FireBaseManager {
         static let guestCollectionName = "guests"
     }
     private let fireStore = Firestore.firestore()
-    
+
     func getGuests() -> Future<[Guest], Never> {
-        return Future() { [fireStore] promise in
+        return Future { [fireStore] promise in
             fireStore.collection(Constants.guestCollectionName).getDocuments { snap, _ in
                 guard let snap = snap else { return }
                 promise(Result.success(snap.documents.compactMap({ try? Guest(dictionary: $0.data()) })))

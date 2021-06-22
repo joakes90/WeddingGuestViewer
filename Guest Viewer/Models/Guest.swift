@@ -16,7 +16,7 @@ struct Guest: Hashable {
     let message: String
     let name: String
     let partySize: Int
-    private (set) var submittedDate: Date? = nil
+    private (set) var submittedDate: Date?
 }
 
 extension Guest: Codable {

@@ -29,7 +29,7 @@ class GuestTableViewController: UIViewController {
         title = "Guests"
         navigationController?.navigationBar.prefersLargeTitles = true
         addBarButtons()
-        
+
         tableView = UITableView(frame: view.bounds, style: .insetGrouped)
         tableView.delegate = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -38,7 +38,7 @@ class GuestTableViewController: UIViewController {
         activityIndicator = UIActivityIndicatorView(style: .large)
         tableView.backgroundView = activityIndicator
         activityIndicator.startAnimating()
-        
+
         // Add refresh control
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(updateGuests), for: .valueChanged)
@@ -47,9 +47,9 @@ class GuestTableViewController: UIViewController {
         // Register Cells
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "guest")
         tableView.register(MastheadCell.self, forCellReuseIdentifier: "masthead")
-        
+
         // Implement data source
-        dataSource = UITableViewDiffableDataSource(tableView: tableView, cellProvider: { tableView, indexPath, item in
+        dataSource = UITableViewDiffableDataSource(tableView: tableView, cellProvider: { tableView, _, item in
             switch item {
             case .guest(let guest):
                 let cell = tableView.dequeueReusableCell(withIdentifier: "guest")
@@ -62,7 +62,7 @@ class GuestTableViewController: UIViewController {
                 return cell
             }
         })
-        
+
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -73,30 +73,30 @@ class GuestTableViewController: UIViewController {
 
     @objc private func updateGuests() {
         guestFuture = firebaseManager.getGuests()
-            .sink() { [weak self] guests in
+            .sink { [weak self] guests in
                 self?.tableView.refreshControl?.endRefreshing()
                 self?.activityIndicator.stopAnimating()
                 self?.buildSnap(for: guests)
             }
-            
+
     }
-    
+
     private func buildSnap(for guests: Guests) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections([Section.masthead, Section.guests])
         // Adding masthead
         let item = MastheadItem(numberOfReplies: guests.count,
-                                numberOfConfirmedYes: guests.filter( { $0.attending == true} ).count,
-                                numberOfConfirmedNo: guests.filter( { $0.attending == false } ).count,
-                                totalGuests: (guests.compactMap( { $0.partySize } )).reduce(0, +) )
+                                numberOfConfirmedYes: guests.filter({ $0.attending == true}).count,
+                                numberOfConfirmedNo: guests.filter({ $0.attending == false }).count,
+                                totalGuests: (guests.compactMap({ $0.partySize })).reduce(0, +) )
         snapshot.appendItems([Item.mastheadData(item)], toSection: .masthead)
-        
+
         // Adding guests
-        
+
         snapshot.appendItems(guests.map({ Item.guest($0) }), toSection: .guests)
         dataSource.apply(snapshot, animatingDifferences: true, completion: nil)
     }
-    
+
     private func addBarButtons() {
         let size = UIAction(title: "Sort by party size",
                             image: UIImage(systemName: "person.3")) { [weak self] _ in
@@ -109,7 +109,7 @@ class GuestTableViewController: UIViewController {
             })
             self?.buildSnap(for: guests.sorted(by: { $0.partySize > $1.partySize }))
         }
-        
+
         let alphabetical = UIAction(title: "Sort by name",
                             image: UIImage(systemName: "person.circle")) { [weak self] _ in
             guard let items = self?.dataSource.snapshot().itemIdentifiers(inSection: .guests) else { return }
@@ -133,12 +133,12 @@ class GuestTableViewController: UIViewController {
 
             self?.buildSnap(for: guests.sorted(by: { $0.submittedDate ?? Date.distantPast < $1.submittedDate ?? Date.distantFuture}))
         }
-        
+
         let menu = UIMenu(title: "Sort", options: .displayInline, children: [size, alphabetical, dateAdded])
         let sortButton = UIBarButtonItem(image: UIImage(systemName: "arrow.up.arrow.down.circle"), menu: menu)
         navigationItem.rightBarButtonItem = sortButton
     }
-    
+
     @objc func setSort() {
         print("set sort")
     }
@@ -149,7 +149,7 @@ extension GuestTableViewController {
         case masthead
         case guests
     }
-    
+
     enum Item: Hashable {
         case guest(Guest)
         case mastheadData(MastheadItem)
@@ -157,7 +157,7 @@ extension GuestTableViewController {
 }
 
 extension GuestTableViewController: UITableViewDelegate {
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch Section(rawValue: indexPath.section) {
         case .masthead:
@@ -168,7 +168,7 @@ extension GuestTableViewController: UITableViewDelegate {
             return 0.0
         }
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         switch Section(rawValue: indexPath.section) {
