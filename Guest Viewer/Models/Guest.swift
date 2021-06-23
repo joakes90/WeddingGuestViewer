@@ -10,13 +10,13 @@ import Firebase
 
 typealias Guests = [Guest]
 
-struct Guest {
+struct Guest: Hashable {
     let attending: Bool
     let email: String
     let message: String
     let name: String
     let partySize: Int
-    private (set) var submittedDate: Date? = nil
+    private (set) var submittedDate: Date?
 }
 
 extension Guest: Codable {
@@ -34,3 +34,5 @@ extension Guest: Codable {
         case partySize
     }
 }
+
+typealias MastheadItem = MastheadView.Model

@@ -11,15 +11,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
-        window?.windowScene = windowScene
-        let viewController = UIViewController()
-        viewController.view.backgroundColor = .blue
-        window?.rootViewController = viewController
-        window?.makeKeyAndVisible()
+        let window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        window.windowScene = windowScene
+        let viewController = GuestTableViewController()
+        let navigationController = UINavigationController(rootViewController: viewController)
+        window.rootViewController = navigationController
+        window.makeKeyAndVisible()
+        self.window = window
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -50,6 +50,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
-
 }
-
