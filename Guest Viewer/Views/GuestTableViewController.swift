@@ -190,7 +190,6 @@ extension GuestTableViewController: UITableViewDelegate {
         switch Section(rawValue: indexPath.section) {
         case .guests:
             if case .guest(let guest) = dataSource.itemIdentifier(for: indexPath) {
-                let detailView = GuestDetailViewViewController()
                 detailView.config(with: guest)
                 displayDetailView()
             }
