@@ -13,6 +13,7 @@ class GuestTableViewController: UIViewController {
     private var tableView: UITableView!
     private var dataSource: UITableViewDiffableDataSource<Section, Item>!
     private var activityIndicator: UIActivityIndicatorView!
+    private lazy var detailView = GuestDetailViewViewController()
 
     // Supporting objects
     private let firebaseManager = FireBaseManager()
@@ -42,7 +43,7 @@ class GuestTableViewController: UIViewController {
         // Add refresh control
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(updateGuests), for: .valueChanged)
-        tableView.refreshControl = refreshControl
+        tableView.insertSubview(refreshControl, at: 0)
 
         // Register Cells
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "guest")
@@ -76,7 +77,10 @@ class GuestTableViewController: UIViewController {
             .sink { [weak self] guests in
                 self?.tableView.refreshControl?.endRefreshing()
                 self?.activityIndicator.stopAnimating()
-                self?.buildSnap(for: guests)
+                self?.buildSnap(for: guests.sortedBy(DefaultsController.sortType))
+                if let refreshControl = self?.tableView.subviews.first(where: { $0 is UIRefreshControl }) as? UIRefreshControl {
+                    refreshControl.endRefreshing()
+                }
             }
 
     }
@@ -101,46 +105,58 @@ class GuestTableViewController: UIViewController {
         let size = UIAction(title: "Sort by party size",
                             image: UIImage(systemName: "person.3")) { [weak self] _ in
             guard let items = self?.dataSource.snapshot().itemIdentifiers(inSection: .guests) else { return }
-            let guests: [Guest] = items.compactMap({ item in
+            let guests: Guests = items.compactMap({ item in
                 switch item {
                 case .guest(let guest): return guest
                 case _: return nil
                 }
             })
-            self?.buildSnap(for: guests.sorted(by: { $0.partySize > $1.partySize }))
+            .sortedBy(.partySize)
+            self?.buildSnap(for: guests)
+            DefaultsController.sortType = .partySize
         }
 
         let alphabetical = UIAction(title: "Sort by name",
                             image: UIImage(systemName: "person.circle")) { [weak self] _ in
             guard let items = self?.dataSource.snapshot().itemIdentifiers(inSection: .guests) else { return }
-            let guests: [Guest] = items.compactMap({ item in
+            let guests: Guests = items.compactMap({ item in
                 switch item {
                 case .guest(let guest): return guest
                 case _: return nil
                 }
             })
-            self?.buildSnap(for: guests.sorted(by: { $0.name < $1.name }))
+            .sortedBy(.alphabetical)
+            self?.buildSnap(for: guests)
+            DefaultsController.sortType = .alphabetical
         }
+
         let dateAdded = UIAction(title: "Sort by date added",
                                  image: UIImage(systemName: "calendar.circle")) { [weak self] _ in
             guard let items = self?.dataSource.snapshot().itemIdentifiers(inSection: .guests) else { return }
-            let guests: [Guest] = items.compactMap({ item in
+            let guests: Guests = items.compactMap({ item in
                 switch item {
                 case .guest(let guest): return guest
                 case _: return nil
                 }
             })
-
-            self?.buildSnap(for: guests.sorted(by: { $0.submittedDate ?? Date.distantPast < $1.submittedDate ?? Date.distantFuture}))
+            .sortedBy(.dateAdded)
+            self?.buildSnap(for: guests)
+            DefaultsController.sortType = .dateAdded
         }
 
-        let menu = UIMenu(title: "Sort", options: .displayInline, children: [size, alphabetical, dateAdded])
+        let menu = UIMenu(title: "Sort", options: .displayInline, children: [alphabetical, dateAdded, size])
         let sortButton = UIBarButtonItem(image: UIImage(systemName: "arrow.up.arrow.down.circle"), menu: menu)
         navigationItem.rightBarButtonItem = sortButton
     }
 
-    @objc func setSort() {
-        print("set sort")
+    private func displayDetailView() {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            if splitViewController?.viewController(for: .secondary) as? GuestDetailViewViewController == nil {
+                splitViewController?.viewController(for: .secondary)?.navigationController?.viewControllers = [detailView]
+            }
+        } else {
+            navigationController?.pushViewController(detailView, animated: true)
+        }
     }
 }
 
@@ -176,7 +192,7 @@ extension GuestTableViewController: UITableViewDelegate {
             if case .guest(let guest) = dataSource.itemIdentifier(for: indexPath) {
                 let detailView = GuestDetailViewViewController()
                 detailView.config(with: guest)
-                navigationController?.pushViewController(detailView, animated: true)
+                displayDetailView()
             }
         default:
             return

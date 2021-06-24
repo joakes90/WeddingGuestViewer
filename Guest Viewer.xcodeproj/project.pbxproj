@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D0218FA1267D3B3000F164EF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0218FA0267D3B3000F164EF /* GoogleService-Info.plist */; };
 		D0218FA4267D3D9C00F164EF /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0218FA3267D3D9C00F164EF /* Guest.swift */; };
+		D028F11B2683DB62004BF38D /* DefaultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D028F11A2683DB62004BF38D /* DefaultsController.swift */; };
 		D0481618267FDB3300AECCA1 /* MastheadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0481617267FDB3300AECCA1 /* MastheadView.swift */; };
 		D048161A26810D9800AECCA1 /* GuestDetailViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048161926810D9800AECCA1 /* GuestDetailViewViewController.swift */; };
 		D048161F2681250500AECCA1 /* UILabel+Copyable in Frameworks */ = {isa = PBXBuildFile; productRef = D048161E2681250500AECCA1 /* UILabel+Copyable */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		D0218FA0267D3B3000F164EF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D0218FA3267D3D9C00F164EF /* Guest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
+		D028F11A2683DB62004BF38D /* DefaultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsController.swift; sourceTree = "<group>"; };
 		D0481617267FDB3300AECCA1 /* MastheadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastheadView.swift; sourceTree = "<group>"; };
 		D048161926810D9800AECCA1 /* GuestDetailViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestDetailViewViewController.swift; sourceTree = "<group>"; };
 		D0D483F4267C323C009A4086 /* Guest Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Guest Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				D0218FA3267D3D9C00F164EF /* Guest.swift */,
+				D028F11A2683DB62004BF38D /* DefaultsController.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				D0E547DE267EF0FE00A399C5 /* GuestTableViewController.swift in Sources */,
 				D0D483FA267C323C009A4086 /* SceneDelegate.swift in Sources */,
 				D0218FA4267D3D9C00F164EF /* Guest.swift in Sources */,
+				D028F11B2683DB62004BF38D /* DefaultsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +360,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = C2NSPAKWYK;
 				INFOPLIST_FILE = "Guest Viewer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -375,6 +380,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = C2NSPAKWYK;
 				INFOPLIST_FILE = "Guest Viewer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
