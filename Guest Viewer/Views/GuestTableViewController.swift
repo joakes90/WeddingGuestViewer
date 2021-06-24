@@ -13,6 +13,7 @@ class GuestTableViewController: UIViewController {
     private var tableView: UITableView!
     private var dataSource: UITableViewDiffableDataSource<Section, Item>!
     private var activityIndicator: UIActivityIndicatorView!
+    private lazy var detailView = GuestDetailViewViewController()
 
     // Supporting objects
     private let firebaseManager = FireBaseManager()
@@ -145,6 +146,16 @@ class GuestTableViewController: UIViewController {
         let sortButton = UIBarButtonItem(image: UIImage(systemName: "arrow.up.arrow.down.circle"), menu: menu)
         navigationItem.rightBarButtonItem = sortButton
     }
+
+    private func displayDetailView() {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            if splitViewController?.viewController(for: .secondary) as? GuestDetailViewViewController == nil {
+                splitViewController?.viewController(for: .secondary)?.navigationController?.viewControllers = [detailView]
+            }
+        } else {
+            navigationController?.pushViewController(detailView, animated: true)
+        }
+    }
 }
 
 extension GuestTableViewController {
@@ -177,9 +188,8 @@ extension GuestTableViewController: UITableViewDelegate {
         switch Section(rawValue: indexPath.section) {
         case .guests:
             if case .guest(let guest) = dataSource.itemIdentifier(for: indexPath) {
-                let detailView = GuestDetailViewViewController()
                 detailView.config(with: guest)
-                navigationController?.pushViewController(detailView, animated: true)
+                displayDetailView()
             }
         default:
             return

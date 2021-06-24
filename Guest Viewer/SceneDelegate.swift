@@ -16,8 +16,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window.windowScene = windowScene
         let viewController = GuestTableViewController()
-        let navigationController = UINavigationController(rootViewController: viewController)
-        window.rootViewController = navigationController
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            let splitViewController = UISplitViewController(style: .doubleColumn)
+            splitViewController.setViewController(viewController, for: .primary)
+            splitViewController.setViewController(UIStoryboard(name: "LaunchScreen",
+                                                               bundle: nil).instantiateInitialViewController(),
+                                                  for: .secondary)
+            window.rootViewController = splitViewController
+        } else {
+            let navigationController = UINavigationController(rootViewController: viewController)
+            window.rootViewController = navigationController
+        }
         window.makeKeyAndVisible()
         self.window = window
     }
