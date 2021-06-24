@@ -75,12 +75,14 @@ class GuestTableViewController: UIViewController {
     @objc private func updateGuests() {
         guestFuture = firebaseManager.getGuests()
             .sink { [weak self] guests in
+                self?.tableView.refreshControl?.endRefreshing()
                 self?.activityIndicator.stopAnimating()
                 self?.buildSnap(for: guests.sortedBy(DefaultsController.sortType))
                 if let refreshControl = self?.tableView.subviews.first(where: { $0 is UIRefreshControl }) as? UIRefreshControl {
                     refreshControl.endRefreshing()
                 }
             }
+
     }
 
     private func buildSnap(for guests: Guests) {
@@ -188,6 +190,7 @@ extension GuestTableViewController: UITableViewDelegate {
         switch Section(rawValue: indexPath.section) {
         case .guests:
             if case .guest(let guest) = dataSource.itemIdentifier(for: indexPath) {
+                let detailView = GuestDetailViewViewController()
                 detailView.config(with: guest)
                 displayDetailView()
             }
