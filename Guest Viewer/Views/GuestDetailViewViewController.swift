@@ -26,7 +26,7 @@ class GuestDetailViewViewController: UIViewController {
     override func loadView() {
         super.loadView()
 
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.alignment = .leading
