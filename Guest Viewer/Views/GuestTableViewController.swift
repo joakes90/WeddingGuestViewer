@@ -42,7 +42,7 @@ class GuestTableViewController: UIViewController {
         // Add refresh control
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(updateGuests), for: .valueChanged)
-        tableView.refreshControl = refreshControl
+        tableView.insertSubview(refreshControl, at: 0)
 
         // Register Cells
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "guest")
@@ -74,11 +74,12 @@ class GuestTableViewController: UIViewController {
     @objc private func updateGuests() {
         guestFuture = firebaseManager.getGuests()
             .sink { [weak self] guests in
-                self?.tableView.refreshControl?.endRefreshing()
                 self?.activityIndicator.stopAnimating()
                 self?.buildSnap(for: guests.sortedBy(DefaultsController.sortType))
+                if let refreshControl = self?.tableView.subviews.first(where: { $0 is UIRefreshControl }) as? UIRefreshControl {
+                    refreshControl.endRefreshing()
+                }
             }
-
     }
 
     private func buildSnap(for guests: Guests) {
