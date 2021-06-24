@@ -27,6 +27,7 @@ class GuestDetailViewViewController: UIViewController {
         super.loadView()
 
         view.backgroundColor = .systemBackground
+        title = "Guest info"
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.alignment = .leading
