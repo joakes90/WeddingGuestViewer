@@ -91,11 +91,13 @@ class GuestDetailViewViewController: UIViewController {
         let messageTitleLabel = UILabel()
         messageTitleLabel.text = "Message: "
         messageTitleLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        messageTitleLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         messageRow.addArrangedSubview(messageTitleLabel)
 
         messageLabel.font = UIFont.preferredFont(forTextStyle: .headline)
         messageLabel.lineBreakMode = .byWordWrapping
         messageLabel.numberOfLines = 0
+        messageLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         messageLabel.isCopyingEnabled = true
 
         let messageWrapper = UIStackView(arrangedSubviews: [messageLabel])
