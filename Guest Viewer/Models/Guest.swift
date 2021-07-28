@@ -15,7 +15,7 @@ enum VaccinationStatus: String, Codable {
     case hasVax
     case needsTest
     case notAttending
-    
+
     var formatedStatus: String {
         switch self {
         case .hasVax:
@@ -26,7 +26,7 @@ enum VaccinationStatus: String, Codable {
             return "Vaccination status:  Will not be attending"
         }
     }
-    
+
     private enum CodingKeys: String, CodingKey {
         case hasVax
         case needsTest

@@ -104,7 +104,7 @@ class GuestTableViewController: UIViewController {
                                     return true
                                 }})
                                 .map({ Item.guest($0) }), toSection: .guests)
-        
+
         // Adding unvaxinated guests
 
         snapshot.appendItems(guests
@@ -219,9 +219,9 @@ extension GuestTableViewController: UITableViewDelegate {
 }
 
 extension GuestTableViewController {
-    
+
     class DataSource: UITableViewDiffableDataSource<Section, Item> {
-     
+
         override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
             guard let section = Section(rawValue: section) else { return nil }
             switch section {
