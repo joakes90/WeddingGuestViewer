@@ -11,7 +11,7 @@ import UIKit
 class GuestTableViewController: UIViewController {
     // Subviews
     private var tableView: UITableView!
-    private var dataSource: UITableViewDiffableDataSource<Section, Item>!
+    private var dataSource: GuestTableViewController.DataSource!
     private var activityIndicator: UIActivityIndicatorView!
     private lazy var detailView = GuestDetailViewViewController()
 
@@ -50,7 +50,7 @@ class GuestTableViewController: UIViewController {
         tableView.register(MastheadCell.self, forCellReuseIdentifier: "masthead")
 
         // Implement data source
-        dataSource = UITableViewDiffableDataSource(tableView: tableView, cellProvider: { tableView, _, item in
+        dataSource = GuestTableViewController.DataSource(tableView: tableView, cellProvider: { tableView, _, item in
             switch item {
             case .guest(let guest):
                 let cell = tableView.dequeueReusableCell(withIdentifier: "guest")
@@ -87,7 +87,7 @@ class GuestTableViewController: UIViewController {
 
     private func buildSnap(for guests: Guests) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
-        snapshot.appendSections([Section.masthead, Section.guests])
+        snapshot.appendSections([Section.masthead, Section.guests, Section.unvaccinated])
         // Adding masthead
         let item = MastheadItem(numberOfReplies: guests.count,
                                 numberOfConfirmedYes: guests.filter({ $0.attending == true}).count,
@@ -97,14 +97,32 @@ class GuestTableViewController: UIViewController {
 
         // Adding guests
 
-        snapshot.appendItems(guests.map({ Item.guest($0) }), toSection: .guests)
+        snapshot.appendItems(guests
+                                .filter({ if case .needsTest = $0.vaccinated {
+                                    return false
+                                } else {
+                                    return true
+                                }})
+                                .map({ Item.guest($0) }), toSection: .guests)
+        
+        // Adding unvaxinated guests
+
+        snapshot.appendItems(guests
+                                .filter({ if case .needsTest = $0.vaccinated {
+                                    return true
+                                } else {
+                                    return false
+                                }})
+                                .map({ Item.guest($0) }), toSection: .unvaccinated)
+
         dataSource.apply(snapshot, animatingDifferences: true, completion: nil)
+
     }
 
     private func addBarButtons() {
         let size = UIAction(title: "Sort by party size",
                             image: UIImage(systemName: "person.3")) { [weak self] _ in
-            guard let items = self?.dataSource.snapshot().itemIdentifiers(inSection: .guests) else { return }
+            guard let items = self?.dataSource.snapshot().itemIdentifiers else { return }
             let guests: Guests = items.compactMap({ item in
                 switch item {
                 case .guest(let guest): return guest
@@ -118,7 +136,7 @@ class GuestTableViewController: UIViewController {
 
         let alphabetical = UIAction(title: "Sort by name",
                             image: UIImage(systemName: "person.circle")) { [weak self] _ in
-            guard let items = self?.dataSource.snapshot().itemIdentifiers(inSection: .guests) else { return }
+            guard let items = self?.dataSource.snapshot().itemIdentifiers else { return }
             let guests: Guests = items.compactMap({ item in
                 switch item {
                 case .guest(let guest): return guest
@@ -132,7 +150,7 @@ class GuestTableViewController: UIViewController {
 
         let dateAdded = UIAction(title: "Sort by date added",
                                  image: UIImage(systemName: "calendar.circle")) { [weak self] _ in
-            guard let items = self?.dataSource.snapshot().itemIdentifiers(inSection: .guests) else { return }
+            guard let items = self?.dataSource.snapshot().itemIdentifiers else { return }
             let guests: Guests = items.compactMap({ item in
                 switch item {
                 case .guest(let guest): return guest
@@ -164,6 +182,7 @@ extension GuestTableViewController {
     enum Section: Int {
         case masthead
         case guests
+        case unvaccinated
     }
 
     enum Item: Hashable {
@@ -178,7 +197,7 @@ extension GuestTableViewController: UITableViewDelegate {
         switch Section(rawValue: indexPath.section) {
         case .masthead:
             return 115.0
-        case .guests:
+        case .guests, .unvaccinated:
             return UITableView.automaticDimension
         case .none:
             return 0.0
@@ -195,6 +214,24 @@ extension GuestTableViewController: UITableViewDelegate {
             }
         default:
             return
+        }
+    }
+}
+
+extension GuestTableViewController {
+    
+    class DataSource: UITableViewDiffableDataSource<Section, Item> {
+     
+        override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+            guard let section = Section(rawValue: section) else { return nil }
+            switch section {
+            case .masthead:
+                return nil
+            case .guests:
+                return "Vaccinated Guests"
+            case .unvaccinated:
+                return "Unvaccinated Guests"
+            }
         }
     }
 }

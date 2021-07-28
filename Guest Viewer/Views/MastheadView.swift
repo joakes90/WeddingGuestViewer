@@ -142,4 +142,11 @@ class MastheadCell: UITableViewCell {
     func configure(with model: MastheadView.Model) {
         mastheadView.configure(with: model)
     }
+
+    override var selectionStyle: UITableViewCell.SelectionStyle {
+        get {
+            return .none
+        }
+        set {}
+    }
 }
