@@ -207,7 +207,7 @@ extension GuestTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         switch Section(rawValue: indexPath.section) {
-        case .guests:
+        case .guests, .unvaccinated:
             if case .guest(let guest) = dataSource.itemIdentifier(for: indexPath) {
                 detailView.config(with: guest)
                 displayDetailView()
