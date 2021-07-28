@@ -11,8 +11,32 @@ import Firebase
 typealias Guests = [Guest]
 typealias MastheadItem = MastheadView.Model
 
+enum VaccinationStatus: String, Codable {
+    case hasVax
+    case needsTest
+    case notAttending
+    
+    var formatedStatus: String {
+        switch self {
+        case .hasVax:
+            return "Vaccination status:  Fully vaccinated"
+        case .needsTest:
+            return "Vaccination status:  Will provide negitive test"
+        case .notAttending:
+            return "Vaccination status:  Will not be attending"
+        }
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+        case hasVax
+        case needsTest
+        case notAttending = ""
+    }
+}
+
 struct Guest: Hashable {
     let attending: Bool
+    let vaccinated: VaccinationStatus?
     let email: String
     let message: String
     let name: String
@@ -34,6 +58,7 @@ extension Guest: Codable {
         case message
         case name
         case partySize
+        case vaccinated
     }
 }
 
