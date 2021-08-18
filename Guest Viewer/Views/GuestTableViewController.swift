@@ -87,7 +87,7 @@ class GuestTableViewController: UIViewController {
 
     private func buildSnap(for guests: Guests) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
-        snapshot.appendSections([Section.masthead, Section.guests, Section.unvaccinated])
+        snapshot.appendSections([Section.masthead])
         // Adding masthead
         let item = MastheadItem(numberOfReplies: guests.count,
                                 numberOfConfirmedYes: guests.filter({ $0.attending == true}).count,
@@ -96,24 +96,43 @@ class GuestTableViewController: UIViewController {
         snapshot.appendItems([Item.mastheadData(item)], toSection: .masthead)
 
         // Adding guests
-
-        snapshot.appendItems(guests
-                                .filter({ if case .needsTest = $0.vaccinated {
-                                    return false
-                                } else {
-                                    return true
-                                }})
-                                .map({ Item.guest($0) }), toSection: .guests)
+        let vaxGuests = guests
+            .filter({ if case .needsTest = $0.vaccinated {
+                return false
+            } else {
+                return true
+            }})
+            .map({ Item.guest($0) })
+        if !vaxGuests.isEmpty {
+            snapshot.appendSections([.vaccinatedGuests])
+            snapshot.appendItems(vaxGuests)
+        }
 
         // Adding unvaxinated guests
+        let unVaxGuests = guests
+            .filter({ if case .needsTest = $0.vaccinated ,
+                         $0.attending {
+                return true
+            } else {
+                return false
+            }})
+            .map({ Item.guest($0) })
+            
+        if !unVaxGuests.isEmpty {
+            snapshot.appendSections([.unvaccinatedGuests])
+            snapshot.appendItems(unVaxGuests)
+        }
 
-        snapshot.appendItems(guests
-                                .filter({ if case .needsTest = $0.vaccinated {
-                                    return true
-                                } else {
-                                    return false
-                                }})
-                                .map({ Item.guest($0) }), toSection: .unvaccinated)
+        // Adding Non Attendies
+        
+        let notAttendings = guests
+            .filter({ !$0.attending })
+            .map({ Item.guest($0) })
+
+        if !notAttendings.isEmpty {
+            snapshot.appendSections([.notAttending])
+            snapshot.appendItems(notAttendings)
+        }
 
         dataSource.apply(snapshot, animatingDifferences: true, completion: nil)
 
@@ -181,8 +200,9 @@ class GuestTableViewController: UIViewController {
 extension GuestTableViewController {
     enum Section: Int {
         case masthead
-        case guests
-        case unvaccinated
+        case vaccinatedGuests
+        case unvaccinatedGuests
+        case notAttending
     }
 
     enum Item: Hashable {
@@ -197,7 +217,7 @@ extension GuestTableViewController: UITableViewDelegate {
         switch Section(rawValue: indexPath.section) {
         case .masthead:
             return 115.0
-        case .guests, .unvaccinated:
+        case .vaccinatedGuests, .unvaccinatedGuests, .notAttending:
             return UITableView.automaticDimension
         case .none:
             return 0.0
@@ -207,7 +227,7 @@ extension GuestTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         switch Section(rawValue: indexPath.section) {
-        case .guests, .unvaccinated:
+        case .vaccinatedGuests, .unvaccinatedGuests, .notAttending:
             if case .guest(let guest) = dataSource.itemIdentifier(for: indexPath) {
                 detailView.config(with: guest)
                 displayDetailView()
@@ -227,10 +247,12 @@ extension GuestTableViewController {
             switch section {
             case .masthead:
                 return nil
-            case .guests:
+            case .vaccinatedGuests:
                 return "Vaccinated Guests"
-            case .unvaccinated:
+            case .unvaccinatedGuests:
                 return "Unvaccinated Guests"
+            case .notAttending:
+                return "Not Attending"
             }
         }
     }
