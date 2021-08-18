@@ -14,7 +14,8 @@ typealias MastheadItem = MastheadView.Model
 enum VaccinationStatus: String, Codable {
     case hasVax
     case needsTest
-    case notAttending
+    case notAttending = ""
+
 
     var formatedStatus: String {
         switch self {
