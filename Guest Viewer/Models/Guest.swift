@@ -16,6 +16,7 @@ enum VaccinationStatus: String, Codable {
     case needsTest
     case notAttending = ""
 
+
     var formatedStatus: String {
         switch self {
         case .hasVax:
