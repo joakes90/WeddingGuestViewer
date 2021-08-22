@@ -6,14 +6,11 @@
 //
 
 import UIKit
+import GuestData
 
 class MastheadView: UIView {
-    struct Model: Hashable {
-        let numberOfReplies: Int
-        let numberOfConfirmedYes: Int
-        let numberOfConfirmedNo: Int
-        let totalGuests: Int
-    }
+    
+    typealias Model = GuestData
 
     private var containerStack = UIStackView()
     private var titleLabel = UILabel()

@@ -5,6 +5,7 @@
 //  Created by Justin Oakes on 6/21/21.
 //
 
+import GuestData
 import UIKit
 import UILabel_Copyable
 

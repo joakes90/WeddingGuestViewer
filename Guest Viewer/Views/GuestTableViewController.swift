@@ -6,9 +6,12 @@
 //
 
 import Combine
+import GuestData
 import UIKit
 
 class GuestTableViewController: UIViewController {
+    typealias MastheadItem = GuestData
+
     // Subviews
     private var tableView: UITableView!
     private var dataSource: GuestTableViewController.DataSource!
@@ -207,7 +210,7 @@ extension GuestTableViewController {
 
     enum Item: Hashable {
         case guest(Guest)
-        case mastheadData(MastheadItem)
+        case mastheadData(GuestData)
     }
 }
 
