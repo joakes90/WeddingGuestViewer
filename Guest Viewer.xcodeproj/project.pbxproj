@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D0218FA1267D3B3000F164EF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0218FA0267D3B3000F164EF /* GoogleService-Info.plist */; };
 		D043959426D2DDE6007C6F10 /* GuestData.h in Headers */ = {isa = PBXBuildFile; fileRef = D043959226D2DDE6007C6F10 /* GuestData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D043959726D2DDE6007C6F10 /* GuestData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D043959026D2DDE6007C6F10 /* GuestData.framework */; };
 		D043959826D2DDE6007C6F10 /* GuestData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D043959026D2DDE6007C6F10 /* GuestData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -16,6 +15,15 @@
 		D04395A226D2DE3A007C6F10 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = D04395A126D2DE3A007C6F10 /* FirebaseFirestoreSwift-Beta */; };
 		D04395A326D2DF1B007C6F10 /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0218FA3267D3D9C00F164EF /* Guest.swift */; };
 		D04395A626D2E722007C6F10 /* DefaultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D028F11A2683DB62004BF38D /* DefaultsController.swift */; };
+		D04395A826D2E95F007C6F10 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D04395A726D2E95F007C6F10 /* GoogleService-Info.plist */; };
+		D04395AF26D2E9AE007C6F10 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D04395AE26D2E9AE007C6F10 /* WidgetKit.framework */; };
+		D04395B126D2E9AE007C6F10 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D04395B026D2E9AE007C6F10 /* SwiftUI.framework */; };
+		D04395B426D2E9AE007C6F10 /* GuestViewerWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04395B326D2E9AE007C6F10 /* GuestViewerWidget.swift */; };
+		D04395B626D2E9AF007C6F10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D04395B526D2E9AF007C6F10 /* Assets.xcassets */; };
+		D04395BA26D2E9AF007C6F10 /* GuestViewerWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D04395AD26D2E9AE007C6F10 /* GuestViewerWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D04395BF26D2E9F4007C6F10 /* GuestData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D043959026D2DDE6007C6F10 /* GuestData.framework */; };
+		D04395C026D2E9F4007C6F10 /* GuestData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D043959026D2DDE6007C6F10 /* GuestData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D04395C526D2EDF1007C6F10 /* WidgetViewSmall.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04395C426D2EDF1007C6F10 /* WidgetViewSmall.swift */; };
 		D0481618267FDB3300AECCA1 /* MastheadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0481617267FDB3300AECCA1 /* MastheadView.swift */; };
 		D048161A26810D9800AECCA1 /* GuestDetailViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048161926810D9800AECCA1 /* GuestDetailViewViewController.swift */; };
 		D048161F2681250500AECCA1 /* UILabel+Copyable in Frameworks */ = {isa = PBXBuildFile; productRef = D048161E2681250500AECCA1 /* UILabel+Copyable */; };
@@ -28,6 +36,20 @@
 
 /* Begin PBXContainerItemProxy section */
 		D043959526D2DDE6007C6F10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D0D483EC267C323C009A4086 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D043958F26D2DDE6007C6F10;
+			remoteInfo = GuestData;
+		};
+		D04395B826D2E9AF007C6F10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D0D483EC267C323C009A4086 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D04395AC26D2E9AE007C6F10;
+			remoteInfo = GuestViewerWidgetExtension;
+		};
+		D04395C126D2E9F4007C6F10 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D0D483EC267C323C009A4086 /* Project object */;
 			proxyType = 1;
@@ -48,15 +70,44 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D04395BE26D2E9AF007C6F10 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D04395BA26D2E9AF007C6F10 /* GuestViewerWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D04395C326D2E9F4007C6F10 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D04395C026D2E9F4007C6F10 /* GuestData.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		D0218FA0267D3B3000F164EF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D0218FA3267D3D9C00F164EF /* Guest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
 		D028F11A2683DB62004BF38D /* DefaultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsController.swift; sourceTree = "<group>"; };
 		D043959026D2DDE6007C6F10 /* GuestData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GuestData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D043959226D2DDE6007C6F10 /* GuestData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GuestData.h; sourceTree = "<group>"; };
 		D043959326D2DDE6007C6F10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D04395A726D2E95F007C6F10 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D04395AD26D2E9AE007C6F10 /* GuestViewerWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GuestViewerWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D04395AE26D2E9AE007C6F10 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		D04395B026D2E9AE007C6F10 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		D04395B326D2E9AE007C6F10 /* GuestViewerWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestViewerWidget.swift; sourceTree = "<group>"; };
+		D04395B526D2E9AF007C6F10 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D04395B726D2E9AF007C6F10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D04395C426D2EDF1007C6F10 /* WidgetViewSmall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetViewSmall.swift; sourceTree = "<group>"; };
 		D0481617267FDB3300AECCA1 /* MastheadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastheadView.swift; sourceTree = "<group>"; };
 		D048161926810D9800AECCA1 /* GuestDetailViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestDetailViewViewController.swift; sourceTree = "<group>"; };
 		D0D483F4267C323C009A4086 /* Guest Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Guest Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +127,16 @@
 			files = (
 				D04395A026D2DE3A007C6F10 /* FirebaseFirestore in Frameworks */,
 				D04395A226D2DE3A007C6F10 /* FirebaseFirestoreSwift-Beta in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D04395AA26D2E9AE007C6F10 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D04395BF26D2E9F4007C6F10 /* GuestData.framework in Frameworks */,
+				D04395B126D2E9AE007C6F10 /* SwiftUI.framework in Frameworks */,
+				D04395AF26D2E9AE007C6F10 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +163,7 @@
 		D043959126D2DDE6007C6F10 /* GuestData */ = {
 			isa = PBXGroup;
 			children = (
+				D04395A726D2E95F007C6F10 /* GoogleService-Info.plist */,
 				D0218FA3267D3D9C00F164EF /* Guest.swift */,
 				D0E547D9267EEA7D00A399C5 /* Firebase Management */,
 				D043959226D2DDE6007C6F10 /* GuestData.h */,
@@ -113,8 +175,21 @@
 		D043959E26D2DE3A007C6F10 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D04395AE26D2E9AE007C6F10 /* WidgetKit.framework */,
+				D04395B026D2E9AE007C6F10 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D04395B226D2E9AE007C6F10 /* GuestViewerWidget */ = {
+			isa = PBXGroup;
+			children = (
+				D04395B326D2E9AE007C6F10 /* GuestViewerWidget.swift */,
+				D04395B526D2E9AF007C6F10 /* Assets.xcassets */,
+				D04395B726D2E9AF007C6F10 /* Info.plist */,
+				D04395C426D2EDF1007C6F10 /* WidgetViewSmall.swift */,
+			);
+			path = GuestViewerWidget;
 			sourceTree = "<group>";
 		};
 		D0D483EB267C323C009A4086 = {
@@ -122,6 +197,7 @@
 			children = (
 				D0D483F6267C323C009A4086 /* Guest Viewer */,
 				D043959126D2DDE6007C6F10 /* GuestData */,
+				D04395B226D2E9AE007C6F10 /* GuestViewerWidget */,
 				D0D483F5267C323C009A4086 /* Products */,
 				D043959E26D2DE3A007C6F10 /* Frameworks */,
 			);
@@ -132,6 +208,7 @@
 			children = (
 				D0D483F4267C323C009A4086 /* Guest Viewer.app */,
 				D043959026D2DDE6007C6F10 /* GuestData.framework */,
+				D04395AD26D2E9AE007C6F10 /* GuestViewerWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -146,7 +223,6 @@
 				D0D48400267C323F009A4086 /* Assets.xcassets */,
 				D0D48402267C323F009A4086 /* LaunchScreen.storyboard */,
 				D0D48405267C323F009A4086 /* Info.plist */,
-				D0218FA0267D3B3000F164EF /* GoogleService-Info.plist */,
 			);
 			path = "Guest Viewer";
 			sourceTree = "<group>";
@@ -205,6 +281,25 @@
 			productReference = D043959026D2DDE6007C6F10 /* GuestData.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		D04395AC26D2E9AE007C6F10 /* GuestViewerWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D04395BB26D2E9AF007C6F10 /* Build configuration list for PBXNativeTarget "GuestViewerWidgetExtension" */;
+			buildPhases = (
+				D04395A926D2E9AE007C6F10 /* Sources */,
+				D04395AA26D2E9AE007C6F10 /* Frameworks */,
+				D04395AB26D2E9AE007C6F10 /* Resources */,
+				D04395C326D2E9F4007C6F10 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D04395C226D2E9F4007C6F10 /* PBXTargetDependency */,
+			);
+			name = GuestViewerWidgetExtension;
+			productName = GuestViewerWidgetExtension;
+			productReference = D04395AD26D2E9AE007C6F10 /* GuestViewerWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		D0D483F3267C323C009A4086 /* Guest Viewer */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D0D48408267C323F009A4086 /* Build configuration list for PBXNativeTarget "Guest Viewer" */;
@@ -214,11 +309,13 @@
 				D0D483F1267C323C009A4086 /* Frameworks */,
 				D0D483F2267C323C009A4086 /* Resources */,
 				D043959926D2DDE6007C6F10 /* Embed Frameworks */,
+				D04395BE26D2E9AF007C6F10 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				D043959626D2DDE6007C6F10 /* PBXTargetDependency */,
+				D04395B926D2E9AF007C6F10 /* PBXTargetDependency */,
 			);
 			name = "Guest Viewer";
 			packageProductDependencies = (
@@ -238,6 +335,9 @@
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					D043958F26D2DDE6007C6F10 = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
+					D04395AC26D2E9AE007C6F10 = {
 						CreatedOnToolsVersion = 12.5.1;
 					};
 					D0D483F3267C323C009A4086 = {
@@ -264,6 +364,7 @@
 			targets = (
 				D0D483F3267C323C009A4086 /* Guest Viewer */,
 				D043958F26D2DDE6007C6F10 /* GuestData */,
+				D04395AC26D2E9AE007C6F10 /* GuestViewerWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -273,6 +374,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D04395A826D2E95F007C6F10 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D04395AB26D2E9AE007C6F10 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D04395B626D2E9AF007C6F10 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,7 +392,6 @@
 			files = (
 				D0D48404267C323F009A4086 /* LaunchScreen.storyboard in Resources */,
 				D0D48401267C323F009A4086 /* Assets.xcassets in Resources */,
-				D0218FA1267D3B3000F164EF /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,8 +423,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D04395C526D2EDF1007C6F10 /* WidgetViewSmall.swift in Sources */,
 				D04395A326D2DF1B007C6F10 /* Guest.swift in Sources */,
 				D043959D26D2DE0B007C6F10 /* FirebaseManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D04395A926D2E9AE007C6F10 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D04395B426D2E9AE007C6F10 /* GuestViewerWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +457,16 @@
 			isa = PBXTargetDependency;
 			target = D043958F26D2DDE6007C6F10 /* GuestData */;
 			targetProxy = D043959526D2DDE6007C6F10 /* PBXContainerItemProxy */;
+		};
+		D04395B926D2E9AF007C6F10 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D04395AC26D2E9AE007C6F10 /* GuestViewerWidgetExtension */;
+			targetProxy = D04395B826D2E9AF007C6F10 /* PBXContainerItemProxy */;
+		};
+		D04395C226D2E9F4007C6F10 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D043958F26D2DDE6007C6F10 /* GuestData */;
+			targetProxy = D04395C126D2E9F4007C6F10 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -405,6 +533,48 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D04395BC26D2E9AF007C6F10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C2NSPAKWYK;
+				INFOPLIST_FILE = GuestViewerWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "joakes.Guest-Viewer.GuestViewerWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D04395BD26D2E9AF007C6F10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C2NSPAKWYK;
+				INFOPLIST_FILE = GuestViewerWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "joakes.Guest-Viewer.GuestViewerWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -574,6 +744,15 @@
 			buildConfigurations = (
 				D043959A26D2DDE6007C6F10 /* Debug */,
 				D043959B26D2DDE6007C6F10 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D04395BB26D2E9AF007C6F10 /* Build configuration list for PBXNativeTarget "GuestViewerWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D04395BC26D2E9AF007C6F10 /* Debug */,
+				D04395BD26D2E9AF007C6F10 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

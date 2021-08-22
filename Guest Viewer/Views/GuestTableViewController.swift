@@ -19,7 +19,7 @@ class GuestTableViewController: UIViewController {
     private lazy var detailView = GuestDetailViewViewController()
 
     // Supporting objects
-    private let firebaseManager = FireBaseManager()
+    private let firebaseManager = (UIApplication.shared.delegate as? AppDelegate)?.firebaseManager
     private var guestFuture: AnyCancellable?
 
     override func viewDidLoad() {
@@ -76,7 +76,7 @@ class GuestTableViewController: UIViewController {
     }
 
     @objc private func updateGuests() {
-        guestFuture = firebaseManager.getGuests()
+        guestFuture = firebaseManager?.getGuests()
             .sink { [weak self] guests in
                 self?.tableView.refreshControl?.endRefreshing()
                 self?.activityIndicator.stopAnimating()

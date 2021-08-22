@@ -7,16 +7,20 @@
 
 import Combine
 import FirebaseFirestore
+import Firebase
 
 public class FireBaseManager {
-    
-    public init() {}
 
     private enum Constants {
         static let guestCollectionName = "guests"
     }
-    private let fireStore = Firestore.firestore()
 
+    private let fireStore: Firestore
+
+    public init() {
+        FirebaseApp.configure()
+        fireStore = Firestore.firestore()
+    }
     public func getGuests() -> Future<[Guest], Never> {
         return Future { [fireStore] promise in
             fireStore.collection(Constants.guestCollectionName).getDocuments { snap, _ in
