@@ -23,7 +23,8 @@
 		D04395BA26D2E9AF007C6F10 /* GuestViewerWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D04395AD26D2E9AE007C6F10 /* GuestViewerWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D04395BF26D2E9F4007C6F10 /* GuestData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D043959026D2DDE6007C6F10 /* GuestData.framework */; };
 		D04395C026D2E9F4007C6F10 /* GuestData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D043959026D2DDE6007C6F10 /* GuestData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D04395C526D2EDF1007C6F10 /* WidgetViewSmall.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04395C426D2EDF1007C6F10 /* WidgetViewSmall.swift */; };
+		D04395C626D2FE84007C6F10 /* WidgetViewSmall.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04395C426D2EDF1007C6F10 /* WidgetViewSmall.swift */; };
+		D04395C926D30C9D007C6F10 /* WidgetViewMedium.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04395C726D30999007C6F10 /* WidgetViewMedium.swift */; };
 		D0481618267FDB3300AECCA1 /* MastheadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0481617267FDB3300AECCA1 /* MastheadView.swift */; };
 		D048161A26810D9800AECCA1 /* GuestDetailViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048161926810D9800AECCA1 /* GuestDetailViewViewController.swift */; };
 		D048161F2681250500AECCA1 /* UILabel+Copyable in Frameworks */ = {isa = PBXBuildFile; productRef = D048161E2681250500AECCA1 /* UILabel+Copyable */; };
@@ -108,6 +109,7 @@
 		D04395B526D2E9AF007C6F10 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D04395B726D2E9AF007C6F10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D04395C426D2EDF1007C6F10 /* WidgetViewSmall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetViewSmall.swift; sourceTree = "<group>"; };
+		D04395C726D30999007C6F10 /* WidgetViewMedium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetViewMedium.swift; sourceTree = "<group>"; };
 		D0481617267FDB3300AECCA1 /* MastheadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastheadView.swift; sourceTree = "<group>"; };
 		D048161926810D9800AECCA1 /* GuestDetailViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestDetailViewViewController.swift; sourceTree = "<group>"; };
 		D0D483F4267C323C009A4086 /* Guest Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Guest Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,6 +190,7 @@
 				D04395B526D2E9AF007C6F10 /* Assets.xcassets */,
 				D04395B726D2E9AF007C6F10 /* Info.plist */,
 				D04395C426D2EDF1007C6F10 /* WidgetViewSmall.swift */,
+				D04395C726D30999007C6F10 /* WidgetViewMedium.swift */,
 			);
 			path = GuestViewerWidget;
 			sourceTree = "<group>";
@@ -423,7 +426,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D04395C526D2EDF1007C6F10 /* WidgetViewSmall.swift in Sources */,
 				D04395A326D2DF1B007C6F10 /* Guest.swift in Sources */,
 				D043959D26D2DE0B007C6F10 /* FirebaseManager.swift in Sources */,
 			);
@@ -433,6 +435,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D04395C626D2FE84007C6F10 /* WidgetViewSmall.swift in Sources */,
+				D04395C926D30C9D007C6F10 /* WidgetViewMedium.swift in Sources */,
 				D04395B426D2E9AE007C6F10 /* GuestViewerWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -485,8 +489,9 @@
 		D043959A26D2DDE6007C6F10 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 7;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = C2NSPAKWYK;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -512,8 +517,9 @@
 		D043959B26D2DDE6007C6F10 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 7;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = C2NSPAKWYK;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -542,6 +548,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = C2NSPAKWYK;
 				INFOPLIST_FILE = GuestViewerWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -563,6 +570,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = C2NSPAKWYK;
 				INFOPLIST_FILE = GuestViewerWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -701,7 +709,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = C2NSPAKWYK;
 				INFOPLIST_FILE = "Guest Viewer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -722,7 +730,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = C2NSPAKWYK;
 				INFOPLIST_FILE = "Guest Viewer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

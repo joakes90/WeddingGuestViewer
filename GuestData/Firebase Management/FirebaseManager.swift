@@ -30,4 +30,10 @@ public class FireBaseManager {
         }
     }
 
+    public func getGuests(completion: @escaping ((Guests) -> Void)) {
+        fireStore.collection(Constants.guestCollectionName).getDocuments { snap, _ in
+            guard let snap = snap else { return }
+            completion(snap.documents.compactMap({ try? Guest(dictionary: $0.data()) }))
+        }
+    }
 }

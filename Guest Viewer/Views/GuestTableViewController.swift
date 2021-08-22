@@ -8,6 +8,7 @@
 import Combine
 import GuestData
 import UIKit
+import WidgetKit
 
 class GuestTableViewController: UIViewController {
     typealias MastheadItem = GuestData
@@ -84,6 +85,7 @@ class GuestTableViewController: UIViewController {
                 if let refreshControl = self?.tableView.subviews.first(where: { $0 is UIRefreshControl }) as? UIRefreshControl {
                     refreshControl.endRefreshing()
                 }
+                WidgetCenter.shared.reloadTimelines(ofKind: "GuestViewerWidget")
             }
 
     }

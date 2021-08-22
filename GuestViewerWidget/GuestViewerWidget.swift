@@ -9,10 +9,12 @@ import WidgetKit
 import Firebase
 import GuestData
 import SwiftUI
+import Combine
 
 struct Provider: TimelineProvider {
     
     let firebaseManager = FireBaseManager()
+    private var guestsSubscribers = Set<AnyCancellable>()
 
     func placeholder(in context: Context) -> SimpleEntry {
         let tempData = GuestData(numberOfReplies: 0,
@@ -24,37 +26,26 @@ struct Provider: TimelineProvider {
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        
-        FirebaseApp.configure()
-        
-        let tempData = GuestData(numberOfReplies: 0,
-                                 numberOfConfirmedYes: 0,
-                                 numberOfConfirmedNo: 0,
-                                 totalGuests: 0)
-        
-        let entry = SimpleEntry(date: Date(), guestData: tempData)
-        
-        completion(entry)
+        firebaseManager.getGuests { guests in
+            let guestData = GuestData(numberOfReplies: guests.count,
+                                      numberOfConfirmedYes: guests.filter({ $0.attending == true}).count,
+                                      numberOfConfirmedNo: guests.filter({ $0.attending == false }).count,
+                                      totalGuests: (guests.compactMap({ $0.partySize })).reduce(0, +))
+            let entry = SimpleEntry(date: Date(), guestData: guestData)
+            completion(entry)
+        }
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
-
-        let tempData = GuestData(numberOfReplies: 0,
-                                 numberOfConfirmedYes: 0,
-                                 numberOfConfirmedNo: 0,
-                                 totalGuests: 0)
-        
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, guestData: tempData)
-            entries.append(entry)
+        firebaseManager.getGuests { guests in
+            let guestData = GuestData(numberOfReplies: guests.count,
+                                      numberOfConfirmedYes: guests.filter({ $0.attending == true}).count,
+                                      numberOfConfirmedNo: guests.filter({ $0.attending == false }).count,
+                                      totalGuests: (guests.compactMap({ $0.partySize })).reduce(0, +))
+            let entry = SimpleEntry(date: Date(), guestData: guestData)
+            let timeLine = Timeline(entries: [entry], policy: .after(Date() + Double(3600) ))
+            completion(timeLine)
         }
-        // TODO: Schedual update
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
     }
 }
 
@@ -65,11 +56,17 @@ struct SimpleEntry: TimelineEntry {
 
 struct GuestViewerWidgetEntryView : View {
     var entry: Provider.Entry
-
+    @Environment(\.widgetFamily) var family
     var body: some View {
-        Text(entry.date, style: .time)
-    }
-}
+        switch family {
+        case .systemSmall:
+            WidgetViewSmall(guestsCount: .constant(entry.guestData.totalGuests))
+        case .systemMedium:
+            WidgetViewMedium(guestData: .constant(entry.guestData))
+        default:
+            WidgetViewMedium(guestData: .constant(entry.guestData))
+        }
+    }}
 
 @main
 struct GuestViewerWidget: Widget {
@@ -88,12 +85,12 @@ struct GuestViewerWidget: Widget {
 struct GuestViewerWidget_Previews: PreviewProvider {
     static var previews: some View {
         
-        let tempData = GuestData(numberOfReplies: 0,
-                                 numberOfConfirmedYes: 0,
+        let tempData = GuestData(numberOfReplies: 5,
+                                 numberOfConfirmedYes: 5,
                                  numberOfConfirmedNo: 0,
-                                 totalGuests: 0)
+                                 totalGuests: 5)
         
         GuestViewerWidgetEntryView(entry: SimpleEntry(date: Date(), guestData: tempData))
-            .previewContext(WidgetPreviewContext(family: .systemMedium))
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }
