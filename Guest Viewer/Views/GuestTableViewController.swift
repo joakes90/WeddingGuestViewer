@@ -6,9 +6,13 @@
 //
 
 import Combine
+import GuestData
 import UIKit
+import WidgetKit
 
 class GuestTableViewController: UIViewController {
+    typealias MastheadItem = GuestData
+
     // Subviews
     private var tableView: UITableView!
     private var dataSource: GuestTableViewController.DataSource!
@@ -16,7 +20,7 @@ class GuestTableViewController: UIViewController {
     private lazy var detailView = GuestDetailViewViewController()
 
     // Supporting objects
-    private let firebaseManager = FireBaseManager()
+    private let firebaseManager = (UIApplication.shared.delegate as? AppDelegate)?.firebaseManager
     private var guestFuture: AnyCancellable?
 
     override func viewDidLoad() {
@@ -73,7 +77,7 @@ class GuestTableViewController: UIViewController {
     }
 
     @objc private func updateGuests() {
-        guestFuture = firebaseManager.getGuests()
+        guestFuture = firebaseManager?.getGuests()
             .sink { [weak self] guests in
                 self?.tableView.refreshControl?.endRefreshing()
                 self?.activityIndicator.stopAnimating()
@@ -81,6 +85,7 @@ class GuestTableViewController: UIViewController {
                 if let refreshControl = self?.tableView.subviews.first(where: { $0 is UIRefreshControl }) as? UIRefreshControl {
                     refreshControl.endRefreshing()
                 }
+                WidgetCenter.shared.reloadTimelines(ofKind: "GuestViewerWidget")
             }
 
     }
@@ -207,7 +212,7 @@ extension GuestTableViewController {
 
     enum Item: Hashable {
         case guest(Guest)
-        case mastheadData(MastheadItem)
+        case mastheadData(GuestData)
     }
 }
 

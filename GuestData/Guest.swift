@@ -8,16 +8,33 @@
 import Foundation
 import Firebase
 
-typealias Guests = [Guest]
-typealias MastheadItem = MastheadView.Model
+public typealias Guests = [Guest]
 
-enum VaccinationStatus: String, Codable {
+public struct GuestData: Hashable {
+
+    public init(numberOfReplies: Int,
+                numberOfConfirmedYes: Int,
+                numberOfConfirmedNo: Int,
+                totalGuests: Int) {
+        self.numberOfReplies = numberOfReplies
+        self.numberOfConfirmedYes = numberOfConfirmedYes
+        self.numberOfConfirmedNo = numberOfConfirmedNo
+        self.totalGuests = totalGuests
+    }
+
+    public let numberOfReplies: Int
+    public let numberOfConfirmedYes: Int
+    public let numberOfConfirmedNo: Int
+    public let totalGuests: Int
+}
+
+public enum VaccinationStatus: String, Codable {
     case hasVax
     case needsTest
     case notAttending = ""
 
 
-    var formatedStatus: String {
+    public var formatedStatus: String {
         switch self {
         case .hasVax:
             return "Vaccination status:  Fully vaccinated"
@@ -35,13 +52,13 @@ enum VaccinationStatus: String, Codable {
     }
 }
 
-struct Guest: Hashable {
-    let attending: Bool
-    let vaccinated: VaccinationStatus?
-    let email: String
-    let message: String
-    let name: String
-    let partySize: Int
+public struct Guest: Hashable {
+    public let attending: Bool
+    public let vaccinated: VaccinationStatus?
+    public let email: String
+    public let message: String
+    public let name: String
+    public let partySize: Int
     private (set) var submittedDate: Date?
 }
 
@@ -63,7 +80,7 @@ extension Guest: Codable {
     }
 }
 
-extension Guests {
+public extension Guests {
 
     enum SortType: Int {
         case partySize

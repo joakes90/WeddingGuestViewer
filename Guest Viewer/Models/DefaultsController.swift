@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import GuestData
 
 class DefaultsController {
 
