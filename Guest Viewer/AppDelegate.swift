@@ -5,14 +5,15 @@
 //  Created by Justin Oakes on 6/17/21.
 //
 
-import Firebase
 import UIKit
+import GuestData
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    private (set) var firebaseManager: FireBaseManager?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        FirebaseApp.configure()
+        firebaseManager = FireBaseManager()
         return true
     }
 
