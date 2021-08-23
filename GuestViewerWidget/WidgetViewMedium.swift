@@ -18,19 +18,24 @@ struct WidgetViewMedium: View {
                     Text("Guests")
                         .font(.system(size: 25))
                         .fontWeight(.bold)
+                        .foregroundColor(Color.black)
                         .padding()
                     Spacer()
                 }
                 HStack {
                     Text("RSVP yes: \(guestData.numberOfConfirmedYes)")
+                        .foregroundColor(Color.black)
                     Spacer()
                     Text("RSVP no: \(guestData.numberOfConfirmedNo)")
+                        .foregroundColor(Color.black)
                 }
                 .padding(.horizontal)
                 HStack {
                     Text("Replies: \(guestData.numberOfReplies)")
+                        .foregroundColor(Color.black)
                     Spacer()
                     Text("Guest count: \(guestData.totalGuests)")
+                        .foregroundColor(Color.black)
                 }
                 .padding()
             }

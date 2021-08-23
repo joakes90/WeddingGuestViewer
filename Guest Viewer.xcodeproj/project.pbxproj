@@ -21,10 +21,9 @@
 		D04395B426D2E9AE007C6F10 /* GuestViewerWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04395B326D2E9AE007C6F10 /* GuestViewerWidget.swift */; };
 		D04395B626D2E9AF007C6F10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D04395B526D2E9AF007C6F10 /* Assets.xcassets */; };
 		D04395BA26D2E9AF007C6F10 /* GuestViewerWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D04395AD26D2E9AE007C6F10 /* GuestViewerWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		D04395BF26D2E9F4007C6F10 /* GuestData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D043959026D2DDE6007C6F10 /* GuestData.framework */; };
-		D04395C026D2E9F4007C6F10 /* GuestData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D043959026D2DDE6007C6F10 /* GuestData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D04395C626D2FE84007C6F10 /* WidgetViewSmall.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04395C426D2EDF1007C6F10 /* WidgetViewSmall.swift */; };
 		D04395C926D30C9D007C6F10 /* WidgetViewMedium.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04395C726D30999007C6F10 /* WidgetViewMedium.swift */; };
+		D04395CA26D31590007C6F10 /* GuestData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D043959026D2DDE6007C6F10 /* GuestData.framework */; };
 		D0481618267FDB3300AECCA1 /* MastheadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0481617267FDB3300AECCA1 /* MastheadView.swift */; };
 		D048161A26810D9800AECCA1 /* GuestDetailViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048161926810D9800AECCA1 /* GuestDetailViewViewController.swift */; };
 		D048161F2681250500AECCA1 /* UILabel+Copyable in Frameworks */ = {isa = PBXBuildFile; productRef = D048161E2681250500AECCA1 /* UILabel+Copyable */; };
@@ -50,7 +49,7 @@
 			remoteGlobalIDString = D04395AC26D2E9AE007C6F10;
 			remoteInfo = GuestViewerWidgetExtension;
 		};
-		D04395C126D2E9F4007C6F10 /* PBXContainerItemProxy */ = {
+		D04395CC26D31590007C6F10 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D0D483EC267C323C009A4086 /* Project object */;
 			proxyType = 1;
@@ -80,17 +79,6 @@
 				D04395BA26D2E9AF007C6F10 /* GuestViewerWidgetExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D04395C326D2E9F4007C6F10 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				D04395C026D2E9F4007C6F10 /* GuestData.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -136,7 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D04395BF26D2E9F4007C6F10 /* GuestData.framework in Frameworks */,
+				D04395CA26D31590007C6F10 /* GuestData.framework in Frameworks */,
 				D04395B126D2E9AE007C6F10 /* SwiftUI.framework in Frameworks */,
 				D04395AF26D2E9AE007C6F10 /* WidgetKit.framework in Frameworks */,
 			);
@@ -291,12 +279,11 @@
 				D04395A926D2E9AE007C6F10 /* Sources */,
 				D04395AA26D2E9AE007C6F10 /* Frameworks */,
 				D04395AB26D2E9AE007C6F10 /* Resources */,
-				D04395C326D2E9F4007C6F10 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D04395C226D2E9F4007C6F10 /* PBXTargetDependency */,
+				D04395CD26D31590007C6F10 /* PBXTargetDependency */,
 			);
 			name = GuestViewerWidgetExtension;
 			productName = GuestViewerWidgetExtension;
@@ -467,10 +454,10 @@
 			target = D04395AC26D2E9AE007C6F10 /* GuestViewerWidgetExtension */;
 			targetProxy = D04395B826D2E9AF007C6F10 /* PBXContainerItemProxy */;
 		};
-		D04395C226D2E9F4007C6F10 /* PBXTargetDependency */ = {
+		D04395CD26D31590007C6F10 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D043958F26D2DDE6007C6F10 /* GuestData */;
-			targetProxy = D04395C126D2E9F4007C6F10 /* PBXContainerItemProxy */;
+			targetProxy = D04395CC26D31590007C6F10 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -506,6 +493,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.joakes.GuestData;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -534,6 +522,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.joakes.GuestData;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

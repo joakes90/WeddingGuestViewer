@@ -16,9 +16,11 @@ struct WidgetViewSmall: View {
                 Text("Guests")
                     .fontWeight(.bold)
                     .padding(.top)
+                    .foregroundColor(Color.black)
                 Text("\(guestsCount)")
                     .font(.system(size: 72.0))
                     .fontWeight(.semibold)
+                    .foregroundColor(Color.black)
                 Spacer()
             }
         }
